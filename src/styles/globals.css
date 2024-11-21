@@ -1,21 +1,29 @@
+/* src/styles/globals.css */
+
+/* Arka plan rengi ve metin renkleri */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #1a202c; /* Koyu arka plan */
+  color: #e2e8f0; /* Açık yazı rengi */
+}
+
+/* Dark mode için renk düzeni */
+.dark {
+  background-color: #2d3748; /* Dark mode arka planı */
+  color: #e2e8f0; /* Dark mode yazı rengi */
+}
+
+/* Daha iyi okuma için margin ve padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Tailwind'in dark mode'u desteklemesi için */
+html {
+  background-color: #f7fafc; /* Sayfa arka planı */
 }
