@@ -1,9 +1,8 @@
-// src/components/Reports/PDFExportButton.js
 import React from 'react';
 import dynamic from 'next/dynamic';
 
-// Dinamik import ile `PDFDownloadLink`'i yalnızca client-side render et
-const PDFDownloadLink = dynamic(() => import('@react-pdf/renderer').then((mod) => mod.PDFDownloadLink), { ssr: false });
+// Dinamik import kullanarak PDFDownloadLink'i yalnızca client-side render etmek için
+const PDFDownloadLink = dynamic(() => import('@react-pdf/renderer').then(mod => mod.PDFDownloadLink), { ssr: false });
 import { generatePDFDocument } from '../../utils/pdfUtils';
 
 const PDFExportButton = ({ income, expenses }) => {

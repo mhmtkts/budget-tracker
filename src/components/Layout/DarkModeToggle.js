@@ -4,7 +4,6 @@ const DarkModeToggle = () => {
   const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
-    // Sayfa yüklendikten sonra dark mode durumunu kontrol et
     const savedDarkMode = localStorage.getItem('darkMode') === 'true';
     setDarkMode(savedDarkMode);
     if (savedDarkMode) {
@@ -12,7 +11,7 @@ const DarkModeToggle = () => {
     } else {
       document.documentElement.classList.remove('dark');
     }
-  }, []);
+  }, []); // Bu effect sadece client-side çalışacak
 
   const toggleDarkMode = () => {
     const newDarkMode = !darkMode;

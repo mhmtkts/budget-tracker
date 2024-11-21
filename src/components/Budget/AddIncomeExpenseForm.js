@@ -14,70 +14,68 @@ const AddIncomeExpenseForm = () => {
     e.preventDefault();
     const entry = { amount: parseFloat(amount), category, description };
 
-    // Gelir veya gider tipine göre veriyi Redux store'a ekle
     if (type === 'income') {
       dispatch(addIncome(entry));
     } else {
       dispatch(addExpense(entry));
     }
 
-    // Formu temizle
     setAmount('');
     setCategory('');
     setDescription('');
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow-md">
-      <h2 className="text-2xl font-bold mb-4">Add Income/Expense</h2>
+    <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow-md w-96 mx-auto">
+      <h2 className="text-2xl font-bold text-center mb-6">Add Income/Expense</h2>
       <div className="mb-4">
-        <label htmlFor="amount" className="block text-sm font-medium">Amount</label>
+        <label htmlFor="amount" className="block text-sm font-medium text-gray-700">Amount</label>
         <input
           type="number"
           id="amount"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
-          className="mt-1 p-2 w-full border rounded"
+          className="mt-1 p-3 text-black w-full border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-600"
           required
         />
       </div>
 
       <div className="mb-4">
-        <label htmlFor="category" className="block text-sm font-medium">Category</label>
+        <label htmlFor="category" className="block text-sm font-medium text-gray-700">Category</label>
         <input
           type="text"
           id="category"
           value={category}
           onChange={(e) => setCategory(e.target.value)}
-          className="mt-1 p-2 w-full border rounded"
+          className="mt-1 p-3 w-full border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-600"
           required
         />
       </div>
 
       <div className="mb-4">
-        <label htmlFor="type" className="block text-sm font-medium">Type</label>
+        <label htmlFor="type" className="block text-sm font-medium text-gray-700">Type</label>
         <select
           id="type"
           value={type}
           onChange={(e) => setType(e.target.value)}
-          className="mt-1 p-2 w-full border rounded"
+          className="mt-1 p-3 w-full border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-600"
         >
           <option value="income">Income</option>
           <option value="expense">Expense</option>
         </select>
       </div>
 
-      <div className="mb-4">
-        <label htmlFor="description" className="block text-sm font-medium">Description</label>
+      <div className="mb-6">
+        <label htmlFor="description" className="block text-sm font-medium text-gray-700">Description</label>
         <textarea
           id="description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          className="mt-1 p-2 w-full border rounded"
+          className="mt-1 p-3 w-full border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-600"
         />
       </div>
 
-      <button type="submit" className="bg-blue-600 text-white p-2 rounded w-full">Add</button>
+      <button type="submit" className="w-full bg-indigo-600 text-white p-3 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-600">Add</button>
     </form>
   );
 };
