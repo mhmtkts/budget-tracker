@@ -1,24 +1,42 @@
-// src/components/Charts/IncomeChart.js
 import React from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from 'recharts';
+import { useSelector } from 'react-redux';
+import { format } from 'date-fns';
 
-const IncomeChart = ({ income }) => {
-  const data = income.map((item) => ({
-    name: item.category,
-    income: item.amount,
+const IncomeChart = () => {
+  const transactions = useSelector((state) => state.budget.transactions);
+  const incomes = transactions.filter((t) => t.type === 'income');
+
+  const monthlyData = incomes.reduce((acc, curr) => {
+    const month = format(new Date(curr.date), 'MMM yyyy');
+    acc[month] = (acc[month] || 0) + curr.amount;
+    return acc;
+  }, {});
+
+  const data = Object.entries(monthlyData).map(([month, amount]) => ({
+    month,
+    amount,
   }));
 
   return (
-    <div className="bg-white p-6 rounded shadow-md">
-      <h3 className="text-xl font-bold mb-4">Income Breakdown</h3>
-      <ResponsiveContainer width="100%" height={400}>
+    <div className="h-[400px] w-full">
+      <ResponsiveContainer>
         <BarChart data={data}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
+          <XAxis dataKey="month" />
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="income" fill="#82ca9d" />
+          <Bar dataKey="amount" fill="#82ca9d" name="Income" />
         </BarChart>
       </ResponsiveContainer>
     </div>

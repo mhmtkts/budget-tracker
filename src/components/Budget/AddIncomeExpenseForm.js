@@ -1,82 +1,92 @@
-// src/components/Budget/AddIncomeExpenseForm.js
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addIncome, addExpense } from '../../redux/slices/budgetSlice';
+import { addTransaction } from '../../redux/slices/budgetSlice';
 
 const AddIncomeExpenseForm = () => {
+  const [formData, setFormData] = useState({
+    type: 'expense',
+    amount: '',
+    category: '',
+    description: '',
+    date: new Date().toISOString().split('T')[0],
+  });
   const dispatch = useDispatch();
-  const [amount, setAmount] = useState('');
-  const [category, setCategory] = useState('');
-  const [type, setType] = useState('income');
-  const [description, setDescription] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const entry = { amount: parseFloat(amount), category, description };
-
-    if (type === 'income') {
-      dispatch(addIncome(entry));
-    } else {
-      dispatch(addExpense(entry));
-    }
-
-    setAmount('');
-    setCategory('');
-    setDescription('');
+    dispatch(addTransaction({
+      ...formData,
+      amount: parseFloat(formData.amount),
+      id: Date.now(),
+    }));
+    // Form reset logic
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow-md w-96 mx-auto">
-      <h2 className="text-2xl font-bold text-center mb-6">Add Income/Expense</h2>
-      <div className="mb-4">
-        <label htmlFor="amount" className="block text-sm font-medium text-gray-700">Amount</label>
+    <div className="p-4 bg-white rounded-lg shadow dark:bg-gray-800">
+      <h2 className="text-xl font-semibold mb-4 dark:text-white">
+        Add {formData.type === 'expense' ? 'Expense' : 'Income'}
+      </h2>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="flex gap-4">
+          <button
+            type="button"
+            className={`px-4 py-2 rounded ${
+              formData.type === 'expense'
+                ? 'bg-red-500 text-white'
+                : 'bg-gray-200 text-gray-700'
+            }`}
+            onClick={() => setFormData({ ...formData, type: 'expense' })}
+          >
+            Expense
+          </button>
+          <button
+            type="button"
+            className={`px-4 py-2 rounded ${
+              formData.type === 'income'
+                ? 'bg-green-500 text-white'
+                : 'bg-gray-200 text-gray-700'
+            }`}
+            onClick={() => setFormData({ ...formData, type: 'income' })}
+          >
+            Income
+          </button>
+        </div>
+        
         <input
           type="number"
-          id="amount"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-          className="mt-1 p-3 text-black w-full border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-600"
+          placeholder="Amount"
+          value={formData.amount}
+          onChange={(e) => setFormData({ ...formData, amount: e.target.value })}
+          className="w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white"
           required
         />
-      </div>
-
-      <div className="mb-4">
-        <label htmlFor="category" className="block text-sm font-medium text-gray-700">Category</label>
+        
         <input
           type="text"
-          id="category"
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-          className="mt-1 p-3 w-full border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-600"
+          placeholder="Description"
+          value={formData.description}
+          onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+          className="w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white"
           required
         />
-      </div>
-
-      <div className="mb-4">
-        <label htmlFor="type" className="block text-sm font-medium text-gray-700">Type</label>
-        <select
-          id="type"
-          value={type}
-          onChange={(e) => setType(e.target.value)}
-          className="mt-1 p-3 w-full border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-600"
-        >
-          <option value="income">Income</option>
-          <option value="expense">Expense</option>
-        </select>
-      </div>
-
-      <div className="mb-6">
-        <label htmlFor="description" className="block text-sm font-medium text-gray-700">Description</label>
-        <textarea
-          id="description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          className="mt-1 p-3 w-full border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-600"
+        
+        <input
+          type="date"
+          value={formData.date}
+          onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+          className="w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+          required
         />
-      </div>
-
-      <button type="submit" className="w-full bg-indigo-600 text-white p-3 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-600">Add</button>
-    </form>
+        
+        <button
+          type="submit"
+          className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
+        >
+          Add Transaction
+        </button>
+      </form>
+    </div>
   );
 };
 

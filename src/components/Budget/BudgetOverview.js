@@ -5,8 +5,9 @@ import { useSelector } from 'react-redux';
 const BudgetOverview = () => {
   const { income, expenses, budgetLimit } = useSelector((state) => state.budget);
 
-  const totalIncome = income.reduce((acc, item) => acc + item.amount, 0);
-  const totalExpenses = expenses.reduce((acc, item) => acc + item.amount, 0);
+  // Veri kontrolü yapalım
+  const totalIncome = Array.isArray(income) ? income.reduce((acc, item) => acc + item.amount, 0) : 0;
+  const totalExpenses = Array.isArray(expenses) ? expenses.reduce((acc, item) => acc + item.amount, 0) : 0;
   const remainingBudget = budgetLimit - totalExpenses;
 
   return (

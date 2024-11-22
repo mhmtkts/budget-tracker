@@ -1,11 +1,11 @@
 // src/pages/_app.js
 import { Provider } from 'react-redux';
-import store from '../redux/store';  // Redux store'u import ettik
-import '../styles/globals.css'; // Global CSS'leri import ettik
+import { store } from '../redux/store'; // store.js'den store'u içe aktarıyoruz
+import '../styles/globals.css'; // Global CSS
 
 function MyApp({ Component, pageProps }) {
   return (
-    <Provider store={store}>
+    <Provider store={store}> {/* Store'u Provider ile sarmalıyoruz */}
       <Component {...pageProps} />
     </Provider>
   );
