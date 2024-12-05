@@ -7,7 +7,7 @@ import DarkModeToggle from '../components/Layout/DarkModeToggle';
 const Settings = () => {
   return (
     <div>
-      <Header />
+     
       <main className="container mx-auto p-4">
         <h2 className="text-2xl font-bold mb-4">Settings</h2>
         <DarkModeToggle />
@@ -16,7 +16,6 @@ const Settings = () => {
           <p className="text-sm">Budget limit can be set here in future.</p>
         </div>
       </main>
-      <Footer />
     </div>
   );
 };

@@ -1,12 +1,16 @@
 // src/pages/_app.js
 import { Provider } from 'react-redux';
-import store from '../redux/store';  // Redux store'u import ettik
-import '../styles/globals.css'; // Global CSS'leri import ettik
+import store from '../redux/store';
+import Layout from '../components/Layout/Layout'; // Layout'u ekledik
+import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }) {
+  // Eğer sayfa özel bir Layout tanımlamışsa onu uygula, aksi halde varsayılan Layout'u kullan
+  const getLayout = Component.getLayout || ((page) => <Layout>{page}</Layout>);
+
   return (
     <Provider store={store}>
-      <Component {...pageProps} />
+      {getLayout(<Component {...pageProps} />)}
     </Provider>
   );
 }

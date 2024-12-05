@@ -1,7 +1,5 @@
 import React from 'react';
-import Image from 'next/image';
-import { HiSearch, HiBell } from 'react-icons/hi'; // İkonlar
-import Logo from './budget-cost-svgrepo-com.svg';
+import { HiSearch, HiBell } from 'react-icons/hi';
 import PDFExportButton from '../Reports/PDFExportButton';
 import useBudgetData from '../../hooks/useBudgetData';
 
@@ -9,20 +7,7 @@ const Header = () => {
   const { income, expenses } = useBudgetData();
 
   return (
-    <header className="bg-white shadow-md px-6 py-4 flex justify-between items-center">
-      {/* Sol: Logo ve Başlık */}
-      <div className="flex items-center gap-4">
-        {/* Logo */}
-        <Image
-          src={Logo}
-          alt="Personel Budget Logo"
-          width={40}
-          height={40}
-        />
-        {/* Başlık */}
-        <h1 className="text-lg font-semibold text-gray-700">Personal Budget</h1>
-      </div>
-
+    <header className="bg-white shadow-md px-6 py-4 flex justify-end items-center">
       {/* Sağ: Araçlar */}
       <div className="flex items-center gap-6">
         {/* Arama */}

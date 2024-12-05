@@ -7,11 +7,11 @@ import Footer from '../components/Layout/Footer';
 const Login = () => {
   return (
     <div>
-      <Header />
+      
       <main className="container mx-auto p-4">
         <LoginForm />
       </main>
-      <Footer />
+      
     </div>
   );
 };

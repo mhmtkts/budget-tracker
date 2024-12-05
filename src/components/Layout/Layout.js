@@ -8,10 +8,12 @@ const Layout = ({ children }) => {
   return (
     <div className="flex h-screen">
       {/* Sidebar */}
-      <Sidebar />
+      <div className="fixed left-0 h-full">
+        <Sidebar />
+      </div>
 
       {/* Main Content */}
-      <div className="flex flex-col flex-1">
+      <div className="ml-60 flex flex-col flex-1">
         <Header />
         <main className="flex-1 overflow-y-auto p-4 bg-gray-100">{children}</main>
         <Footer />
