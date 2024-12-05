@@ -16,8 +16,6 @@ export default function Home() {
       <AddIncomeExpenseForm />
       <FinancialInsights income={income} expenses={expenses} />
       <BudgetOverview />
-      <ExpenseChart expenses={expenses} />
-      <IncomeChart income={income} />
       <SavingsRecommendations income={income} expenses={expenses} />
     </Layout>
   );

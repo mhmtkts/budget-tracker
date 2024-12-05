@@ -12,9 +12,11 @@ import {
 import { groupDataByMonth } from "../../utils/groupDataByMonth ";
 import CustomTooltip from "./CustomTooltip";
 import YearFilter from "./YearFilter";
+import CombinedPieChart from "./CombinedPieChart";
 
 const FinancialInsights = () => {
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear().toString());
+  const [selectedMonthData, setSelectedMonthData] = useState(null);
   const income = useSelector((state) => state.budget.income);
   const expenses = useSelector((state) => state.budget.expenses);
 
@@ -28,6 +30,21 @@ const FinancialInsights = () => {
 
   // Filtrelenmiş verileri aylara göre grupla
   const monthlyData = groupDataByMonth(filteredIncome, filteredExpenses);
+
+  const handleBarClick = (data) => {
+    if (data && data.activePayload) {
+      const clickedMonth = data.activePayload[0].payload;
+      setSelectedMonthData({
+        month: clickedMonth.month,
+        income: filteredIncome.filter(item => 
+          new Date(item.date).getMonth() === monthlyData.findIndex(m => m.month === clickedMonth.month)
+        ),
+        expenses: filteredExpenses.filter(item => 
+          new Date(item.date).getMonth() === monthlyData.findIndex(m => m.month === clickedMonth.month)
+        )
+      });
+    }
+  };
 
   return (
     <div className="bg-white p-6 rounded-lg shadow">
@@ -46,7 +63,8 @@ const FinancialInsights = () => {
       </div>
 
       <ResponsiveContainer width="100%" height={400}>
-        <BarChart data={monthlyData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+        <BarChart data={monthlyData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+        onClick={handleBarClick}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="month" />
           <YAxis />
@@ -55,6 +73,11 @@ const FinancialInsights = () => {
           <Bar dataKey="expense" fill="#EF4444" />
         </BarChart>
       </ResponsiveContainer>
+      <CombinedPieChart
+        income={income}
+        expenses={expenses}
+        selectedMonthData={selectedMonthData}
+      />
     </div>
   );
 };
