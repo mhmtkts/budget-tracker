@@ -4,7 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   income: [],
   expenses: [],
-  budgetLimit: 2000,
+  budgetLimit: 0,
 };
 
 const budgetSlice = createSlice({
