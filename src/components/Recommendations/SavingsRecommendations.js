@@ -1,32 +1,49 @@
-// src/components/Recommendations/SavingsRecommendations.js
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux'; // Redux store'dan veri çekmek için
+import CategoryTables from './CategoryTable';
 
 const SavingsRecommendations = ({ income, expenses }) => {
-  const [recommendations, setRecommendations] = useState([]);
+  const [incomeCategories, setIncomeCategories] = useState([]);
+  const [expenseCategories, setExpenseCategories] = useState([]);
+  
+  // Redux'tan kategorileri al
+  const categories = useSelector((state) => state.categories.categories);
 
   useEffect(() => {
-    const totalIncome = income.reduce((acc, item) => acc + item.amount, 0);
-    const totalExpenses = expenses.reduce((acc, item) => acc + item.amount, 0);
+    // Gelir ve gider kategorilerini oluştur
+    const incomeData = income.map((item) => {
+      // Kategorinin ikonunu ve rengini bul
+      const categoryInfo = categories.find((cat) => cat.name === item.category);
+      return {
+        category: item.category,
+        amount: item.amount,
+        icon: categoryInfo?.icon,
+        color: categoryInfo?.color,
+      };
+    });
 
-    const savingsPercentage = (totalIncome - totalExpenses) / totalIncome * 100;
+    const expenseData = expenses.map((item) => {
+      // Kategorinin ikonunu ve rengini bul
+      const categoryInfo = categories.find((cat) => cat.name === item.category);
+      return {
+        category: item.category,
+        amount: item.amount,
+        icon: categoryInfo?.icon,
+        color: categoryInfo?.color,
+      };
+    });
 
-    const recs = savingsPercentage > 20
-      ? ['Good job! Keep saving.']
-      : savingsPercentage > 10
-      ? ['Consider cutting back on some expenses.']
-      : ['Try to reduce your spending for better savings.'];
-
-    setRecommendations(recs);
-  }, [income, expenses]);
+    setIncomeCategories(incomeData);
+    setExpenseCategories(expenseData);
+  }, [income, expenses, categories]); // categories bağımlılığı ekleyerek yenileme
 
   return (
-    <div className="bg-white p-6 rounded shadow-md">
-      <h3 className="text-xl font-bold mb-4">Savings Recommendations</h3>
-      <ul>
-        {recommendations.map((rec, index) => (
-          <li key={index} className="text-sm">{rec}</li>
-        ))}
-      </ul>
+    <div className="bg-gray-50 p-8 rounded shadow-md">
+      <h2 className="text-2xl font-bold mb-6 text-center">Budget Breakdown</h2>
+      <CategoryTables
+        incomeCategories={incomeCategories}
+        expenseCategories={expenseCategories}
+      />
     </div>
   );
 };

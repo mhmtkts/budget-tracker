@@ -1,8 +1,20 @@
 // src/redux/slices/categoriesSlice.js
 import { createSlice } from '@reduxjs/toolkit';
+import { faUtensils, faHome, faShoppingCart, faCar, faHeartbeat, faGraduationCap, faShieldAlt, faFilm, faCog } from '@fortawesome/free-solid-svg-icons';
 
 const initialState = {
-  categories: ['Food', 'Rent', 'Entertainment', 'Utilities'],
+  categories: [
+    { name: 'Food', icon: faUtensils },
+    { name: 'Rent', icon: faHome },
+    { name: 'Shopping', icon: faShoppingCart },
+    { name: 'Transportation', icon: faCar },
+    { name: 'Healthcare', icon: faHeartbeat },
+    { name: 'Education', icon: faGraduationCap },
+    { name: 'Insurance', icon: faShieldAlt },
+    { name: 'Entertainment', icon: faFilm },
+    { name: 'Utilities', icon: faCog },
+    { name: 'Other', icon: faCog }
+  ],
 };
 
 const categoriesSlice = createSlice({

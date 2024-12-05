@@ -1,10 +1,10 @@
-// src/redux/slices/budgetSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   income: [],
   expenses: [],
   budgetLimit: 0,
+  categoryLimits: {}, // Her kategori için limitler
 };
 
 const budgetSlice = createSlice({
@@ -20,8 +20,12 @@ const budgetSlice = createSlice({
     setBudgetLimit(state, action) {
       state.budgetLimit = action.payload;
     },
+    setCategoryLimit(state, action) {
+      const { category, limit } = action.payload;
+      state.categoryLimits[category] = limit; // Kategoriye özel limit
+    },
   },
 });
 
-export const { addIncome, addExpense, setBudgetLimit } = budgetSlice.actions;
+export const { addIncome, addExpense, setBudgetLimit, setCategoryLimit } = budgetSlice.actions;
 export default budgetSlice.reducer;
