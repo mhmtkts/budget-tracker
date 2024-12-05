@@ -48,9 +48,9 @@ const FinancialInsights = () => {
 
   return (
     <div className="flex flex-col gap-6 mb-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Sol taraftaki grafik */}
-        <div className="bg-white p-6 rounded-lg shadow">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Sol taraftaki geniş grafik */}
+        <div className="bg-white p-6 rounded-lg shadow md:col-span-2">
           <div className="flex justify-between items-center mb-6">
             <h3 className="text-xl font-semibold">Financial Insights</h3>
             <div className="flex items-center">
@@ -81,12 +81,14 @@ const FinancialInsights = () => {
           </ResponsiveContainer>
         </div>
 
-        {/* Sağ taraftaki pie chart */}
-        <CombinedPieChart 
-          income={income}
-          expenses={expenses}
-          selectedMonthData={selectedMonthData}
-        />
+        {/* Sağ taraftaki daha küçük pie chart */}
+        <div className="bg-white p-4 rounded-lg shadow">
+          <CombinedPieChart 
+            income={income}
+            expenses={expenses}
+            selectedMonthData={selectedMonthData}
+          />
+        </div>
       </div>
     </div>
   );
