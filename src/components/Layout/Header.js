@@ -20,7 +20,7 @@ const Header = () => {
           <span className="absolute top-0 right-0 w-2.5 h-2.5 bg-red-500 rounded-full"></span>
         </button>
         {/* Export Butonu */}
-        <button className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition">
+        <button>
           <PDFExportButton income={income} expenses={expenses} />
         </button>
       </div>
