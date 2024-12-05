@@ -5,9 +5,9 @@ import { Card, CardHeader, CardTitle, CardContent } from '../ui/card';
 const BudgetOverview = () => {
   const { income, expenses } = useSelector((state) => state.budget);
 
-  const totalIncome = income.reduce((acc, item) => acc + item.amount, 0);
-  const totalExpenses = expenses.reduce((acc, item) => acc + item.amount, 0);
-  const remainingBudget = totalIncome - totalExpenses;
+  const totalIncome = income.reduce((acc, item) => acc + item.amount, 0).toFixed(2);
+  const totalExpenses = expenses.reduce((acc, item) => acc + item.amount, 0).toFixed(2);
+  const remainingBudget = (totalIncome - totalExpenses).toFixed(2);
 
   return (
     <Card className="mb-6">
