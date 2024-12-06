@@ -1,4 +1,3 @@
-// src/components/Charts/CombinedPieChart.js
 import React, { useState } from 'react';
 import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
@@ -48,16 +47,21 @@ const CombinedPieChart = ({ income, expenses, selectedMonthData }) => {
             cy="50%"
             outerRadius={150}
             fill="#8884d8"
-            label={({name, percent}) => `${name} ${(percent * 100).toFixed(0)}%`}
+            labelLine={false} // Etiketlerin çizgiyle bağlanmasını engelle
           >
             {(showExpenses ? expenseData : incomeData).map((entry, index) => (
               <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
             ))}
           </Pie>
           <Tooltip
-            formatter={(value) => `$${value.toLocaleString()}`}
+            formatter={(value) => `$${value.toLocaleString()}`} // Tooltipteki değer formatı
+            labelFormatter={(value) => `${value}`} // Tooltipte etiketin ismini göster
           />
-          <Legend />
+          <Legend
+            verticalAlign="top"
+            align="center"
+            wrapperStyle={{ paddingTop: 20 }}
+          />
         </PieChart>
       </ResponsiveContainer>
     </div>

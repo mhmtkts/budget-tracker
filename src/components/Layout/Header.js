@@ -17,7 +17,7 @@ const Header = () => {
         {/* Bildirim */}
         <button className="relative text-gray-500 hover:text-gray-700">
           <HiBell className="w-6 h-6" />
-          <span className="absolute top-0 right-0 w-2.5 h-2.5 bg-red-500 rounded-full"></span>
+          <span className="absolute top-0 right-0 w-2.5 h-2.5 rounded-full"></span>
         </button>
         {/* Export Butonu */}
         <button>

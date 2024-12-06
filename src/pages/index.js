@@ -4,6 +4,7 @@ import BudgetOverview from "../components/Budget/BudgetOverview";
 import SavingsRecommendations from "../components/Recommendations/SavingsRecommendations";
 import FinancialInsights from "../components/Charts/FinancialInsights";
 import useBudgetData from "../hooks/useBudgetData";
+import SetCategoryLimit from "../components/Budget/SetCategoryLimit";
 
 export default function Home() {
   const { income, expenses } = useBudgetData();
@@ -11,9 +12,9 @@ export default function Home() {
   return (
     <div>
       <AddIncomeExpenseForm />
+      <SetCategoryLimit/>
       <FinancialInsights income={income} expenses={expenses} />
       <BudgetOverview />
-      <SavingsRecommendations income={income} expenses={expenses} />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import {
   BarChart,
@@ -13,6 +13,7 @@ import { groupDataByMonth } from "../../utils/groupDataByMonth ";
 import CustomTooltip from "./CustomTooltip";
 import YearFilter from "./YearFilter";
 import CombinedPieChart from "./CombinedPieChart";
+import SavingsRecommendations from "../Recommendations/SavingsRecommendations"; // SavingsRecommendations'ı dahil ediyoruz
 
 const FinancialInsights = () => {
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear().toString());
@@ -31,6 +32,11 @@ const FinancialInsights = () => {
   // Filtrelenmiş verileri aylara göre grupla
   const monthlyData = groupDataByMonth(filteredIncome, filteredExpenses);
 
+  // Yıl değiştiğinde selectedMonthData'yı sıfırlama
+  useEffect(() => {
+    setSelectedMonthData(null); // Yıl değiştiğinde veriyi sıfırla
+  }, [selectedYear]);
+
   const handleBarClick = (data) => {
     if (data && data.activePayload) {
       const clickedMonth = data.activePayload[0].payload;
@@ -44,6 +50,11 @@ const FinancialInsights = () => {
         )
       });
     }
+  };
+
+  const handleYearChange = (year) => {
+    setSelectedYear(year);
+    setSelectedMonthData(null); // Yıl değiştiğinde selectedMonthData'yı sıfırla
   };
 
   return (
@@ -60,7 +71,7 @@ const FinancialInsights = () => {
               <span className="mr-4">Expense</span>
               <YearFilter 
                 selectedYear={selectedYear} 
-                onYearChange={setSelectedYear} 
+                onYearChange={handleYearChange} // Yıl değiştiğinde selectedMonthData'yı sıfırla
               />
             </div>
           </div>
@@ -86,9 +97,17 @@ const FinancialInsights = () => {
           <CombinedPieChart 
             income={income}
             expenses={expenses}
-            selectedMonthData={selectedMonthData}
+            selectedMonthData={selectedMonthData} // Yıl değiştiğinde null gelecek
           />
         </div>
+      </div>
+
+      {/* SavingsRecommendations Bileşeni */}
+      <div className="bg-white p-6 rounded-lg shadow mt-6">
+        <SavingsRecommendations 
+          income={filteredIncome} // Filtrelenmiş gelir
+          expenses={filteredExpenses} // Filtrelenmiş gider
+        />
       </div>
     </div>
   );
