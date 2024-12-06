@@ -1,4 +1,3 @@
-// src/pages/login.js
 import React from "react";
 import LoginForm from "../components/Auth/LoginForm";
 

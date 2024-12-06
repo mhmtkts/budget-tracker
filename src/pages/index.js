@@ -1,7 +1,5 @@
-// src/pages/index.js
 import AddIncomeExpenseForm from "../components/Budget/AddIncomeExpenseForm";
 import BudgetOverview from "../components/Budget/BudgetOverview";
-import SavingsRecommendations from "../components/Recommendations/SavingsRecommendations";
 import FinancialInsights from "../components/Charts/FinancialInsights";
 import useBudgetData from "../hooks/useBudgetData";
 import SetCategoryLimit from "../components/Budget/SetCategoryLimit";

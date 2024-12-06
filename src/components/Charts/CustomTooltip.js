@@ -21,7 +21,7 @@ const CustomTooltip = ({ active, payload, label, monthlyData }) => {
         <p className="font-bold">{label}</p>
         <div className="mt-2">
           <p className="text-lg font-semibold">
-            ₺{payload[0].value.toLocaleString('tr-TR', { minimumFractionDigits: 2 })}
+            ${payload[0].value.toLocaleString('en-US', { minimumFractionDigits: 2 })}
           </p>
           <p className={`text-sm ${Number(incomeChange) >= 0 ? 'text-green-500' : 'text-red-500'}`}>
             {Number(incomeChange) >= 0 ? '↑' : '↓'} %{Math.abs(incomeChange)} geçen aya göre
@@ -29,7 +29,7 @@ const CustomTooltip = ({ active, payload, label, monthlyData }) => {
         </div>
         <div className="mt-2">
           <p className="text-lg font-semibold">
-            ₺{payload[1].value.toLocaleString('tr-TR', { minimumFractionDigits: 2 })}
+            ${payload[1].value.toLocaleString('en-US', { minimumFractionDigits: 2 })}
           </p>
           <p className={`text-sm ${Number(expenseChange) >= 0 ? 'text-green-500' : 'text-red-500'}`}>
             {Number(expenseChange) >= 0 ? '↑' : '↓'} %{Math.abs(expenseChange)} geçen aya göre

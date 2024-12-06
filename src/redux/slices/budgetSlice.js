@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   income: [],
@@ -8,7 +8,7 @@ const initialState = {
 };
 
 const budgetSlice = createSlice({
-  name: 'budget',
+  name: "budget",
   initialState,
   reducers: {
     addIncome(state, action) {
@@ -27,5 +27,6 @@ const budgetSlice = createSlice({
   },
 });
 
-export const { addIncome, addExpense, setBudgetLimit, setCategoryLimit } = budgetSlice.actions;
+export const { addIncome, addExpense, setBudgetLimit, setCategoryLimit } =
+  budgetSlice.actions;
 export default budgetSlice.reducer;

@@ -8,10 +8,14 @@ const YearFilter = ({ selectedYear, onYearChange }) => {
     <select
       value={selectedYear}
       onChange={(e) => onYearChange(e.target.value)}
-      className="p-2 border rounded"
+      className="p-2 border rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 border-gray-300 dark:border-gray-600"
     >
       {years.map(year => (
-        <option key={year} value={year.toString()}>
+        <option 
+          key={year} 
+          value={year.toString()}
+          className="bg-white dark:bg-gray-700"
+        >
           {year === currentYear ? 'This year' : year}
         </option>
       ))}

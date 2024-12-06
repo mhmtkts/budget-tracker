@@ -30,37 +30,37 @@ const BudgetOverview = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       {/* Total Balance */}
-      <Card className="p-4 shadow rounded-lg">
+      <Card className="p-4 shadow rounded-lg bg-white dark:bg-gray-800">
         <CardContent>
-          <h3 className="text-lg font-semibold mb-2">Total Balance</h3>
-          <p className="text-2xl font-bold">${remainingBudget}</p>
+          <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">Total Balance</h3>
+          <p className="text-2xl font-bold text-gray-900 dark:text-white">${remainingBudget}</p>
         </CardContent>
       </Card>
 
       {/* Total Income */}
-      <Card className="p-4 shadow rounded-lg">
+      <Card className="p-4 shadow rounded-lg bg-white dark:bg-gray-800">
         <CardContent>
-          <h3 className="text-lg font-semibold mb-2">Income</h3>
-          <p className="text-2xl font-bold">${totalIncome}</p>
+          <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">Income</h3>
+          <p className="text-2xl font-bold text-gray-900 dark:text-white">${totalIncome}</p>
         </CardContent>
       </Card>
 
       {/* Total Expenses */}
-      <Card className="p-4 shadow rounded-lg">
+      <Card className="p-4 shadow rounded-lg bg-white dark:bg-gray-800">
         <CardContent>
-          <h3 className="text-lg font-semibold mb-2">Expense</h3>
-          <p className="text-2xl font-bold">${totalExpenses}</p>
+          <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">Expense</h3>
+          <p className="text-2xl font-bold text-gray-900 dark:text-white">${totalExpenses}</p>
         </CardContent>
       </Card>
 
       {/* Budget Limit Alerts */}
       {categoryWarnings.length > 0 && (
         <div className="col-span-1 md:col-span-3 mt-6">
-          <h4 className="font-semibold text-lg mb-2">Budget Limit Alerts:</h4>
-          <ul className="list-disc pl-6">
+          <h4 className="font-semibold text-lg mb-2 text-gray-900 dark:text-white">Budget Limit Alerts:</h4>
+          <ul className="list-disc pl-6 text-gray-800 dark:text-gray-200">
             {categoryWarnings.map((warning, index) => (
               <li key={index}>
-                <strong>{warning.category}</strong>: {warning.percentageSpent}% of budget reached.
+                <strong>{warning.category}</strong>: {warning.percentageSpent}% of budget used
               </li>
             ))}
           </ul>

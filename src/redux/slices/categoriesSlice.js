@@ -1,4 +1,3 @@
-// src/redux/slices/categoriesSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 import { faUtensils, faHome, faShoppingCart, faCar, faHeartbeat, faGraduationCap, faShieldAlt, faFilm, faCog } from '@fortawesome/free-solid-svg-icons';
 

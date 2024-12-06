@@ -1,4 +1,3 @@
-// src/services/pdfService.js
 import { generatePDFDocument } from '../utils/pdfUtils';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 

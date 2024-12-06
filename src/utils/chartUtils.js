@@ -1,5 +1,3 @@
-// src/utils/chartUtils.js
-
 // Grafik verilerini hazırlama
 export const prepareChartData = (data, key) => {
     return data.map((item) => ({

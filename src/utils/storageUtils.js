@@ -1,5 +1,3 @@
-// src/utils/storageUtils.js
-
 // Veriyi localStorage'a kaydet
 export const saveToLocalStorage = (key, value) => {
     if (typeof window !== "undefined") {

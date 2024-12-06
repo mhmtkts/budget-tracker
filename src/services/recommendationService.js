@@ -1,5 +1,3 @@
-// src/services/recommendationService.js
-
 // Kullanıcıya tasarruf önerileri sunmak için gelir ve gider verilerini analiz et
 export const generateSavingsRecommendations = (income, expenses) => {
     const totalIncome = income.reduce((acc, item) => acc + item.amount, 0);

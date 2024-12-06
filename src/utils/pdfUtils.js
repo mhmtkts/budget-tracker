@@ -1,4 +1,3 @@
-// src/utils/pdfUtils.js
 import { Document, Page, Text, View } from '@react-pdf/renderer';
 
 export const generatePDFDocument = (income, expenses) => {

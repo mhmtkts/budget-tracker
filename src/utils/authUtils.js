@@ -1,5 +1,3 @@
-// src/utils/authUtils.js
-
 // Kullanıcıyı doğrulamak (basit örnek)
 export const authenticateUser = (email, password) => {
     // Burada basit bir doğrulama yapılabilir (gerçek bir sistemde API entegrasyonu olmalı)

@@ -1,4 +1,3 @@
-// src/pages/register.js
 import React from "react";
 import RegisterForm from "../components/Auth/RegisterForm";
 

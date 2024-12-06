@@ -1,4 +1,3 @@
-// src/hooks/useCategoryAlerts.js
 import { useSelector } from 'react-redux';
 
 const useCategoryAlerts = () => {
