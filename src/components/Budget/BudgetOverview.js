@@ -11,21 +11,18 @@ const BudgetOverview = () => {
   const remainingBudget = (totalIncome - totalExpenses).toFixed(2);
 
   // Her kategori için limit kontrolü
-  const categoryWarnings = expenses.reduce((acc, expense) => {
-    const categoryLimit = categoryLimits[expense.category];
-    if (categoryLimit) {
-      const totalCategoryExpense = expenses
-        .filter((item) => item.category === expense.category)
-        .reduce((sum, item) => sum + item.amount, 0);
+  const categoryWarnings = Object.entries(categoryLimits).reduce((acc, [category, limit]) => {
+    const totalCategoryExpense = expenses
+      .filter((item) => item.category === category)
+      .reduce((sum, item) => sum + item.amount, 0);
 
-      const percentageSpent = (totalCategoryExpense / categoryLimit) * 100;
+    const percentageSpent = (totalCategoryExpense / limit) * 100;
 
-      if (percentageSpent >= 80) {
-        acc.push({
-          category: expense.category,
-          percentageSpent: percentageSpent.toFixed(2),
-        });
-      }
+    if (percentageSpent >= 80) {
+      acc.push({
+        category,
+        percentageSpent: percentageSpent.toFixed(2),
+      });
     }
     return acc;
   }, []);

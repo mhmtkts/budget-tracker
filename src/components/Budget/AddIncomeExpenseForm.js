@@ -2,8 +2,18 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addIncome, addExpense } from "../../redux/slices/budgetSlice";
 import { Card, CardHeader, CardTitle, CardContent } from "../ui/card";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUtensils, faHome, faShoppingCart, faCar, faHeartbeat, faGraduationCap, faShieldAlt, faFilm, faCog } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faUtensils,
+  faHome,
+  faShoppingCart,
+  faCar,
+  faHeartbeat,
+  faGraduationCap,
+  faShieldAlt,
+  faFilm,
+  faCog,
+} from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-toastify";
 
 const AddIncomeExpenseForm = () => {
@@ -45,22 +55,24 @@ const AddIncomeExpenseForm = () => {
     } else {
       // Gider eklenirken bütçe kontrolü
       const categoryLimit = budgetLimits[category];
-      
+
       if (categoryLimit) {
         // Seçili kategori için mevcut toplam harcama
         const categoryExpenses = expenses
-          .filter(exp => exp.category === category)
+          .filter((exp) => exp.category === category)
           .reduce((total, exp) => total + exp.amount, 0);
-        
+
         // Yeni harcama eklendiğindeki toplam
         const newTotal = categoryExpenses + parseFloat(amount);
-        
+
         // Bütçe limit kontrolü
         const limitPercentage = (newTotal / categoryLimit) * 100;
-        
+
         if (limitPercentage >= 80) {
           toast.warn(
-            `Dikkat! "${category}" kategorisinde bütçenizin %${limitPercentage.toFixed(1)}'ini kullandınız!`,
+            `Dikkat! "${category}" kategorisinde bütçenizin %${limitPercentage.toFixed(
+              1
+            )}'ini kullandınız!`,
             {
               position: "top-right",
               autoClose: 5000,
@@ -93,7 +105,10 @@ const AddIncomeExpenseForm = () => {
         <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label htmlFor="amount" className="block text-gray-700 font-medium">
+              <label
+                htmlFor="amount"
+                className="block text-gray-700 font-medium"
+              >
                 Tutar
               </label>
               <input
@@ -106,7 +121,10 @@ const AddIncomeExpenseForm = () => {
               />
             </div>
             <div className="relative">
-              <label htmlFor="category" className="block text-gray-700 font-medium">
+              <label
+                htmlFor="category"
+                className="block text-gray-700 font-medium"
+              >
                 Kategori
               </label>
               <div className="flex items-center mt-1 p-3 w-full border rounded-md">
@@ -164,7 +182,10 @@ const AddIncomeExpenseForm = () => {
           </div>
 
           <div className="mt-4">
-            <label htmlFor="description" className="block text-gray-700 font-medium">
+            <label
+              htmlFor="description"
+              className="block text-gray-700 font-medium"
+            >
               Açıklama
             </label>
             <textarea

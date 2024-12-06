@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addCategory } from "../../redux/slices/categoriesSlice";
+import { setCategoryLimit } from "../../redux/slices/budgetSlice";
+import { toast } from "react-toastify";
 
 const SetCategoryLimit = () => {
   const dispatch = useDispatch();
@@ -11,12 +13,16 @@ const SetCategoryLimit = () => {
   const handleSetLimit = (e) => {
     e.preventDefault();
     if (category && limit > 0) {
-      // Kategori ve limit bilgisi doğruysa Redux'a ekliyoruz
-      dispatch(addCategory({ name: category, limit: parseFloat(limit) }));
-      setCategory(""); // Kategoriyi sıfırlıyoruz
-      setLimit(""); // Limiti sıfırlıyoruz
+      // Redux'a kategori limitini ekliyoruz
+      dispatch(setCategoryLimit({ category, limit: parseFloat(limit) }));
+      
+      // Başarılı mesajı göster
+      toast.success(`${category} kategorisi için ${limit} TL limit belirlendi.`);
+      
+      setCategory("");
+      setLimit("");
     } else {
-      alert("Lütfen geçerli bir kategori ve limit girin.");
+      toast.error("Lütfen geçerli bir kategori ve limit girin.");
     }
   };
 
