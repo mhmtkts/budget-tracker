@@ -64,26 +64,29 @@ const FinancialInsights = () => {
   };
 
   return (
-    <div className="flex flex-col gap-6 mb-6">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div className="space-y-8">
+      {/* Ana Grafik ve Pasta Grafik Bölümü */}
+      <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
         {/* Sol taraftaki geniş grafik */}
-        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow md:col-span-2">
-          <div className="flex justify-between items-center mb-6">
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+        <div className="lg:col-span-2 bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4 md:mb-0">
               Financial Insights
             </h3>
-            <div className="flex items-center">
-              <div className="mr-2 w-4 h-4 bg-[#4F46E5]"></div>
-              <span className="mr-4 text-gray-700 dark:text-gray-300">
-                Income
-              </span>
-              <div className="mr-2 w-4 h-4 bg-[#EF4444]"></div>
-              <span className="mr-4 text-gray-700 dark:text-gray-300">
-                Expense
-              </span>
+            <div className="flex flex-wrap items-center gap-4">
+              <div className="flex items-center">
+                <div className="mr-2 w-4 h-4 bg-[#4F46E5]"></div>
+                <span className="mr-4 text-gray-700 dark:text-gray-300">
+                  Income
+                </span>
+                <div className="mr-2 w-4 h-4 bg-[#EF4444]"></div>
+                <span className="text-gray-700 dark:text-gray-300">
+                  Expense
+                </span>
+              </div>
               <YearFilter
                 selectedYear={selectedYear}
-                onYearChange={handleYearChange} // Yıl değiştiğinde selectedMonthData'yı sıfırla
+                onYearChange={handleYearChange}
               />
             </div>
           </div>

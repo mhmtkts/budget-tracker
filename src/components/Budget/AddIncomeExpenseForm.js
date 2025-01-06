@@ -70,7 +70,9 @@ const AddIncomeExpenseForm = () => {
 
         if (limitPercentage >= 80) {
           toast.warn(
-            `Warning! You have used ${limitPercentage.toFixed(1)}% of your "${category}" budget!`,
+            `Warning! You have used ${limitPercentage.toFixed(
+              1
+            )}% of your "${category}" budget!`,
             {
               position: "top-right",
               autoClose: 5000,
@@ -101,9 +103,12 @@ const AddIncomeExpenseForm = () => {
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit}>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label htmlFor="amount" className="block text-gray-700 dark:text-gray-300 font-medium">
+              <label
+                htmlFor="amount"
+                className="block text-gray-700 dark:text-gray-300 font-medium"
+              >
                 Amount
               </label>
               <input
@@ -116,7 +121,10 @@ const AddIncomeExpenseForm = () => {
               />
             </div>
             <div className="relative">
-              <label htmlFor="category" className="block text-gray-700 dark:text-gray-300 font-medium">
+              <label
+                htmlFor="category"
+                className="block text-gray-700 dark:text-gray-300 font-medium"
+              >
                 Category
               </label>
               <div className="flex items-center mt-1 p-3 w-full border rounded-md dark:bg-gray-700 dark:border-gray-600">
@@ -127,9 +135,15 @@ const AddIncomeExpenseForm = () => {
                   className="appearance-none bg-transparent flex-1 focus:outline-none dark:text-white dark:[&>option]:bg-gray-700 dark:[&>option]:text-white"
                   required
                 >
-                  <option value="" className="dark:bg-gray-700 dark:text-white">Select Category</option>
+                  <option value="" className="dark:bg-gray-700 dark:text-white">
+                    Select Category
+                  </option>
                   {categories.map((cat) => (
-                    <option key={cat.name} value={cat.name} className="dark:bg-gray-700 dark:text-white">
+                    <option
+                      key={cat.name}
+                      value={cat.name}
+                      className="dark:bg-gray-700 dark:text-white"
+                    >
                       {cat.name}
                     </option>
                   ))}
@@ -145,12 +159,15 @@ const AddIncomeExpenseForm = () => {
           </div>
 
           <div className="mt-4">
-            <label htmlFor="date" className="block text-gray-700 dark:text-gray-300 font-medium">
+            <label
+              htmlFor="date"
+              className="block text-gray-700 dark:text-gray-300 font-medium"
+            >
               Date
             </label>
-            <div 
+            <div
               className="relative"
-              onClick={() => document.getElementById('date').showPicker()}
+              onClick={() => document.getElementById("date").showPicker()}
             >
               <input
                 type="date"
@@ -164,7 +181,10 @@ const AddIncomeExpenseForm = () => {
           </div>
 
           <div className="mt-4">
-            <label htmlFor="type" className="block text-gray-700 dark:text-gray-300 font-medium">
+            <label
+              htmlFor="type"
+              className="block text-gray-700 dark:text-gray-300 font-medium"
+            >
               Type
             </label>
             <select
@@ -179,7 +199,10 @@ const AddIncomeExpenseForm = () => {
           </div>
 
           <div className="mt-4">
-            <label htmlFor="description" className="block text-gray-700 dark:text-gray-300 font-medium">
+            <label
+              htmlFor="description"
+              className="block text-gray-700 dark:text-gray-300 font-medium"
+            >
               Description
             </label>
             <textarea
